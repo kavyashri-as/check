@@ -21,7 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd kavyashri-as/check
+        cd .
         npm install
 
     - name: Build
