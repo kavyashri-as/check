@@ -12,6 +12,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+    
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
@@ -19,7 +20,9 @@ jobs:
         node-version: '18'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd your-app-directory
+        npm install
 
     - name: Build
       run: npm run build
