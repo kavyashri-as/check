@@ -3,6 +3,7 @@ let currentInput = '';
 let operator = '';
 let previousInput = '';
 let shouldResetDisplay = false;
+let memory = 0;
 
 function appendToDisplay(value) {
     if (shouldResetDisplay) {
@@ -111,6 +112,28 @@ function calculate() {
     previousInput = '';
     shouldResetDisplay = true;
     display.value = currentInput;
+}
+
+// Memory functions
+function memoryClear() {
+    memory = 0;
+}
+
+function memoryRecall() {
+    currentInput = memory.toString();
+    updateDisplay();
+}
+
+function memoryAdd() {
+    if (currentInput !== '') {
+        memory += parseFloat(currentInput) || 0;
+    }
+}
+
+function memorySubtract() {
+    if (currentInput !== '') {
+        memory -= parseFloat(currentInput) || 0;
+    }
 }
 
 // Add keyboard support
