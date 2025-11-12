@@ -1,0 +1,30 @@
+{
+  "name": "calculator-app",
+  "version": "1.0.0",
+  "description": "A simple, responsive web-based calculator built with HTML, CSS, and JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "start:alt": "python -m SimpleHTTPServer 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kavyashri-as/check.git"
+  },
+  "keywords": [
+    "calculator",
+    "javascript",
+    "html",
+    "css",
+    "web-app",
+    "responsive",
+    "math",
+    "arithmetic"
+  ],
+  "author": "Calculator App Contributors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kavyashri-as/check/issues"
+  },
+  "homepage": "https://github.com/kavyashri-as/check#readme"
+}
