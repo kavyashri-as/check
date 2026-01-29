@@ -1,4 +1,4 @@
-let display = document.getElementById('result');
+let displayElement = document.getElementById('result');
 let currentInput = '';
 let operator = '';
 let previousInput = '';
@@ -47,11 +47,11 @@ function appendToDisplay(value) {
 
 function updateDisplay() {
     if (operator && previousInput && !currentInput) {
-        display.value = previousInput + ' ' + operator;
+        displayElement.value = previousInput + ' ' + operator;
     } else if (operator && previousInput && currentInput) {
-        display.value = previousInput + ' ' + operator + ' ' + currentInput;
+        displayElement.value = previousInput + ' ' + operator + ' ' + currentInput;
     } else {
-        display.value = currentInput || '0';
+        displayElement.value = currentInput || '0';
     }
 }
 
@@ -59,7 +59,7 @@ function clearDisplay() {
     currentInput = '';
     previousInput = '';
     operator = '';
-    display.value = '0';
+    displayElement.value = '0';
 }
 
 function deleteLast() {
@@ -111,7 +111,7 @@ function calculate() {
     operator = '';
     previousInput = '';
     shouldResetDisplay = true;
-    display.value = currentInput;
+    displayElement.value = currentInput;
 }
 
 // Memory functions
