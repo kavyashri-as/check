@@ -1,4 +1,4 @@
-let display = document.getElementById('result');
+let calculatorDisplayElement = document.getElementById('result');
 let currentInput = '';
 let operator = '';
 let previousInput = '';
@@ -47,11 +47,11 @@ function appendToDisplay(value) {
 
 function updateDisplay() {
     if (operator && previousInput && !currentInput) {
-        display.value = previousInput + ' ' + operator;
+        calculatorDisplayElement.value = previousInput + ' ' + operator;
     } else if (operator && previousInput && currentInput) {
-        display.value = previousInput + ' ' + operator + ' ' + currentInput;
+        calculatorDisplayElement.value = previousInput + ' ' + operator + ' ' + currentInput;
     } else {
-        display.value = currentInput || '0';
+        calculatorDisplayElement.value = currentInput || '0';
     }
 }
 
@@ -59,7 +59,7 @@ function clearDisplay() {
     currentInput = '';
     previousInput = '';
     operator = '';
-    display.value = '0';
+    calculatorDisplayElement.value = '0';
 }
 
 function deleteLast() {
@@ -75,30 +75,30 @@ function calculate() {
     }
     
     let result;
-    const prev = parseFloat(previousInput);
-    const current = parseFloat(currentInput);
+    const previousValue = parseFloat(previousInput);
+    const currentValue = parseFloat(currentInput);
     
-    if (isNaN(prev) || isNaN(current)) {
+    if (isNaN(previousValue) || isNaN(currentValue)) {
         return;
     }
     
     switch (operator) {
         case '+':
-            result = prev + current;
+            result = previousValue + currentValue;
             break;
         case '-':
-            result = prev - current;
+            result = previousValue - currentValue;
             break;
         case '*':
-            result = prev * current;
+            result = previousValue * currentValue;
             break;
         case '/':
-            if (current === 0) {
+            if (currentValue === 0) {
                 alert('Error: Division by zero!');
                 clearDisplay();
                 return;
             }
-            result = prev / current;
+            result = previousValue / currentValue;
             break;
         default:
             return;
@@ -111,7 +111,7 @@ function calculate() {
     operator = '';
     previousInput = '';
     shouldResetDisplay = true;
-    display.value = currentInput;
+    calculatorDisplayElement.value = currentInput;
 }
 
 // Memory functions
@@ -137,22 +137,22 @@ function memorySubtract() {
 }
 
 // Add keyboard support
-document.addEventListener('keydown', function(event) {
-    const key = event.key;
+document.addEventListener('keydown', function(keyboardEvent) {
+    const pressedKey = keyboardEvent.key;
     
-    if ('0123456789'.includes(key)) {
-        appendToDisplay(key);
-    } else if ('+-*/'.includes(key)) {
-        appendToDisplay(key);
-    } else if (key === '.') {
+    if ('0123456789'.includes(pressedKey)) {
+        appendToDisplay(pressedKey);
+    } else if ('+-*/'.includes(pressedKey)) {
+        appendToDisplay(pressedKey);
+    } else if (pressedKey === '.') {
         appendToDisplay('.');
-    } else if (key === 'Enter' || key === '=') {
-        event.preventDefault();
+    } else if (pressedKey === 'Enter' || pressedKey === '=') {
+        keyboardEvent.preventDefault();
         calculate();
-    } else if (key === 'Escape' || key === 'c' || key === 'C') {
+    } else if (pressedKey === 'Escape' || pressedKey === 'c' || pressedKey === 'C') {
         clearDisplay();
-    } else if (key === 'Backspace') {
-        event.preventDefault();
+    } else if (pressedKey === 'Backspace') {
+        keyboardEvent.preventDefault();
         deleteLast();
     }
 });
